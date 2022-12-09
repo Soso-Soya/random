@@ -138,14 +138,35 @@
 				if (rna && rnb && total && key && qua != 0) {
 					let rn = rna * rnb;
 					let res = [];
-					for (var i = 0; i < qua; i++) {
-						res[i] = (((rn % (total + i)) % total) + key + 1) % (total - 1) + 1;
-					}
-					console.log(res);
 					let resOpt = [];
-					for (var i = 0; i < res.length; i++) {
-						resOpt[i] = (i + 1).toString() + ":" + res[i].toString() + "</br>"
+					let resTemp=[];
+					while(resTemp.length<qua){
+						let lenth=qua-resTemp.length;
+						if(lenth==qua){
+							for (var i = 0; i < lenth; i++) {
+								res[i] = (((rn % (total + i)) % total) + key + 1) % (total - 1) + 1;
+							}
+						}
+						else{
+							for (var i = resTemp.length; i < qua+lenth; i++) {
+									res[i] = (((rn % (total + i)) % total) + key + 1) % (total - 1) + 1;
+								}
+							}
+							
+						
+						let resTemp1=[res[0]];
+						for (var i = 0; i < res.length; i++) {
+							if(resTemp1.includes(res[i])===false){
+								resTemp1.push(res[i]);
+							}
+						}
+						resTemp=resTemp1;
 					}
+					for (var i = 0; i < qua; i++) {
+						resOpt[i] = (i + 1).toString() + ":" + resTemp[i].toString() + "</br>"
+					}
+					
+					
 					$('#resultTable').html(resOpt);
 					$('#inputBox').hide();
 					$('#resultBox').show();
