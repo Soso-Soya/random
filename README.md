@@ -1,1 +1,1 @@
-[solnextdoor.github.io](https://solnextdoor.github.io){:target="_blank"}
+[solnextdoor.github.io](https://solnextdoor.github.io)
