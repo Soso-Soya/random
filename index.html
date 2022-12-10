@@ -49,7 +49,7 @@
 
 			button:hover {
 				color: #292929;
-				background-color: #eccf36;
+				background-color: #e5c834;
 			}
 
 			button:active {
@@ -78,8 +78,43 @@
 			}
 			#buttonClose{
 				width: 255px;
+				background-color: #ed143d;
+				color: #fafafa;
+			}
+			#buttonClose:hover{
+				background-color: #bd0f32;
+			}
+			#buttonClose:active{
+				background-color: #8f0b27;
+			}
+			.buttonActive{
+				background-color: #5d5d5d;
+				color: #e5c834;
+			}
+			.buttonActive:hover{
+				background-color: #5d5d5d;
+				color: #e5c834;
+			}
+			.buttonActive:active{
+				background-color: #5d5d5d;
+				color: #e5c834;
+			}
+			#buttonSort{
+				width: 255px;
+			}
+			#buttonDefault{
+				width: 255px;
 			}
 			#resultTable{
+				color: #fafafa;
+				margin: 0 auto;
+				width: 100%;
+				display: flex;
+				overflow: auto;
+				justify-content: center;
+				align-items: center;
+			}
+			#resultTableSort{
 				color: #fafafa;
 				margin: 0 auto;
 				width: 100%;
@@ -115,7 +150,10 @@
 		</div>
 		<div id="resultBox">
 			<div id="resultTable"></div>
+			<div id="resultTableSort"></div>
 			<div>
+				<button class="button buttonActive" id="buttonDefault" >Default</button>
+				<button class="button" id="buttonSort">Sort</button>
 				<button class="button" id="buttonClose">Close</button>
 			</div>
 		</div>
@@ -135,12 +173,19 @@
 				let total = $('#inputTotal').val();
 				let key = $('#inputKey').val();
 				let qua = $('#inputQuantity').val();
-				if (rna && rnb && total && key && qua != 0) {
+				if (rna && rnb && total && key && qua&&total-qua>0) {
 					let rn = rna * rnb;
 					let res = [];
 					let resOpt = [];
+					let resOptSort = [];
 					let resTemp=[];
+					let times=0;
 					while(resTemp.length<qua){
+						times++;
+						if(times>qua*10){
+							alert("error1");
+							break;
+						}
 						let lenth=qua-resTemp.length;
 						if(lenth==qua){
 							for (var i = 0; i < lenth; i++) {
@@ -162,19 +207,47 @@
 						}
 						resTemp=resTemp1;
 					}
+					let resSort=[];
 					for (var i = 0; i < qua; i++) {
-						resOpt[i] = (i + 1).toString() + ":" + resTemp[i].toString() + "</br>"
+						resSort[i]=resTemp[i];
+					}
+					for (var i = 1; i < resSort.length; i++) {
+						let sortTemp=resSort[i];
+						let j=i-1;
+						while(j>=0&&resSort[j]>sortTemp){
+							resSort[j+1]=resSort[j];
+							j--;
+						}
+						resSort[j+1]=sortTemp;
+					}
+					for (var i = 0; i < qua; i++) {
+						resOpt[i] = (i + 1).toString() + ":  " + resTemp[i].toString() + "</br>"
+						resOptSort[i] = (i + 1).toString() + ":  " + resSort[i].toString() + "</br>"
 					}
 					
-					
 					$('#resultTable').html(resOpt);
+					$('#resultTableSort').html(resOptSort);
 					$('#inputBox').hide();
 					$('#resultBox').show();
+					$('#resultTable').show();
+					$('#resultTableSort').hide();
 					$('body').css('background','#292929');
 					$('body').css('overflow','auto');
 				} else {
-					alert('input')
+					alert('error')
 				}
+			})
+			$('#buttonSort').click(function(){
+				$('#resultTable').hide();
+				$('#resultTableSort').show();
+				$('#buttonSort').addClass('buttonActive');
+				$('#buttonDefault').removeClass('buttonActive');
+			})
+			$('#buttonDefault').click(function(){
+				$('#resultTable').show();
+				$('#resultTableSort').hide();
+				$('#buttonDefault').addClass('buttonActive');
+				$('#buttonSort').removeClass('buttonActive');
 			})
 			$('#buttonClose').click(function(){
 				$('#inputBox').show();
