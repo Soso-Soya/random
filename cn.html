@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-		<title>Draw with two number</title>
+		<title>抽签</title>
 		<style type="text/css">
 			* {
 				-webkit-transition: all .2s;
@@ -151,39 +151,39 @@
 	</head>
 	<body>
 		<div class="langBox">
-			<div style="color: #fcd837;">EN</div>
+			<div><a href="index.html">EN</a></div>
 			<div>&nbsp;|&nbsp;</div>
-			<div><a href="cn.html">中文</a></div>
+			<div style="color: #fcd837;">中文</div>
 		</div>
 		<div id="inputBox">
 			<div>
-				<input class="input" id="inputRNA" placeholder="Random Number A" />
-				<button class="button" id="buttonRNA">Roll</button>
+				<input class="input" id="inputRNA" placeholder="随机数A" />
+				<button class="button" id="buttonRNA">随机</button>
 			</div>
 			<div>
-				<input class="input" id="inputRNB" placeholder="Random Number B" />
-				<button class="button" id="buttonRNB">Roll</button>
+				<input class="input" id="inputRNB" placeholder="随机数B" />
+				<button class="button" id="buttonRNB">随机</button>
 			</div>
 			<div>
-				<input class="input" id="inputKey" placeholder="A key" />
+				<input class="input" id="inputKey" placeholder="一个键" />
 			</div>
 			<div>
-				<input class="input" id="inputTotal" placeholder="Total Number" />
+				<input class="input" id="inputTotal" placeholder="参与数量" />
 			</div>
 			<div>
-				<input class="input" id="inputQuantity" placeholder="Quantity" />
+				<input class="input" id="inputQuantity" placeholder="抽取数量" />
 			</div>
 			<div>
-				<button class="button" id="buttonGetRes">Get</button>
+				<button class="button" id="buttonGetRes">获取</button>
 			</div>
 		</div>
 		<div id="resultBox">
 			<div id="resultTable"></div>
 			<div id="resultTableSort"></div>
 			<div id="buttonBox">
-				<button class="button buttonActive" id="buttonDefault" >Default</button>
-				<button class="button" id="buttonSort">Sort</button>
-				<button class="button" id="buttonClose">Close</button>
+				<button class="button buttonActive" id="buttonDefault" >默认顺序</button>
+				<button class="button" id="buttonSort">排序</button>
+				<button class="button" id="buttonClose">关闭</button>
 			</div>
 		</div>
 		<script type="text/javascript">
