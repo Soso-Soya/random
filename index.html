@@ -217,13 +217,13 @@
 						let lenth=qua-resTemp.length;
 						if(lenth==qua){
 							for (var i = 0; i < lenth; i++) {
-								res[i] = ((rn % (total + i)) % (total-1)) + 1;
+								res[i] = ((rn % (total + i)) % total) + 1;
 								// res[i] = (((rn % (total + i)) % total) + key + 1) % (total - 1) + 1;
 							}
 						}
 						else{
 							for (var i = resTemp.length; i < qua+lenth; i++) {
-								res[i] = ((rn % (total + i)) % (total-1)) + 1;
+								res[i] = ((rn % (total + i)) % total) + 1;
 									// res[i] = (((rn % (total + i)) % total) + key + 1) % (total - 1) + 1;
 								}
 							}
